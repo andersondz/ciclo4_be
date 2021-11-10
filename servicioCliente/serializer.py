@@ -10,6 +10,7 @@ class SoporteSerializer(serializers.ModelSerializer):
         
 class PQRSerializer(serializers.ModelSerializer):
     
+    soporte = SoporteSerializer(read_only=True)
     class Meta:
         model = PQR
         fields = ['id', 'soporte', 'tipo', 'info']

@@ -1,23 +1,47 @@
 from django.shortcuts import render
-from rest_framework import generics
-
-# Create your views here.
+# from rest_framework import generics
+from rest_framework import generics, authentication, permissions
 from .models import PQR, Soporte
 from .serializer import SoporteSerializer, PQRSerializer
+
+# Create your views here.
 
 class SoporteListCreate(generics.ListCreateAPIView):
     # Soporte.objects.all() = select * from soportes, object para acceder al ORM
     queryset = Soporte.objects.all()
-    serializers_class = SoporteSerializer
+    serializer_class = SoporteSerializer
+    # authentication_classes = [authentication.TokenAuthentication]
+    # permission_classes = [permissions.IsAuthenticated]
 
 class SoporteUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Soporte.objects.all()
-    serializers_class = SoporteSerializer
+    serializer_class = SoporteSerializer
     
 class PQRListCreate(generics.ListCreateAPIView):
     queryset = PQR.objects.all()
-    serializers_class = PQRSerializer
+    serializer_class = PQRSerializer
 
 class PQRUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = PQR.objects.all()
-    serializers_class = PQRSerializer
+    serializer_class = PQRSerializer
+    
+# 
+# 
+
+# class SoporteListCreate(generics.ListCreateAPIView):
+#     queryset = Soporte.objects.all()
+#     serializer_class = SoporteSerializer
+#     authentication_classes = [authentication.TokenAuthentication]
+#     permission_classes = [permissions.IsAuthenticated]
+
+# class SoporteUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Soporte.objects.all()
+#     serializer_class = SoporteSerializer
+
+# class PQRListCreate(generics.ListCreateAPIView):
+#     queryset = PQR.objects.all()
+#     serializer_class = PQRSerializer
+
+# class PQRUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = PQR.objects.all()
+#     serializer_class = PQRSerializer
